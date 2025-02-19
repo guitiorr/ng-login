@@ -47,7 +47,8 @@ export class LoginComponent {
       alert("Login Success");
       console.log(data);
       this.router.navigateByUrl("admin");
-      localStorage.setItem("angular19user", data.email)
+      localStorage.setItem("angular19user", data.username);
+      console.log(localStorage);
     }, error => {
       alert("Login Failed");
     })
