@@ -3,11 +3,11 @@
   <form action="" #form="ngForm">
       <h2 class="heading">Login Here</h2>
 
-      <label for="email">Email: </label>
-      <input type="email" name="email" [(ngModel)]="loginObj.email">
+      <label for="username">username: </label>
+      <input type="text" name="username" [(ngModel)]="apiLoginObj.username">
 
       <label for="password">Password: </label>
-      <input type="password" name="password" [(ngModel)]="loginObj.password" >
+      <input type="password" name="password" [(ngModel)]="apiLoginObj.password" >
 
       <button class="login-btn" type="submit" [hidden]="form.invalid" (click)="onLogin()">Login</button>
       <span class="register-btn">Don't have an account?</span>

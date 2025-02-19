@@ -1,7 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Credentials } from '../credentials';
-import { FormsModule }  from '@angular/forms';
+import { EmailValidator, FormsModule }  from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { LoginServiceService } from './services/login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -10,22 +12,44 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+  constructor(private loginService: LoginServiceService){
+
+  }
+
   loginObj: Credentials = {
-    email: '',
+    username: '',
+    password: '',
+  }
+
+  apiLoginObj: Credentials = {
+    username: '',
     password: '',
   }
 
   router = inject(Router);
+  http = inject(HttpClient);
 
 
   onLogin(){
-    console.log(this.loginObj);
-    if(this.loginObj.email == "admin@gmail.com" && this.loginObj.password == "admin"){
+    // console.log(this.loginObj);
+    // if(this.loginObj.email == "admin@gmail.com" && this.loginObj.password == "admin"){
+    //   alert("Login Success");
+    //   this.router.navigateByUrl("admin");
+    // }
+    // else{
+    //   alert("Login Failed");
+    // }
+
+    console.log(this.apiLoginObj);
+
+    this.loginService.login(this.apiLoginObj).subscribe((data:any) => {
       alert("Login Success");
+      console.log(data);
       this.router.navigateByUrl("admin");
-    }
-    else{
+      localStorage.setItem("angular19user", data.email)
+    }, error => {
       alert("Login Failed");
-    }
+    })
   }
 }
