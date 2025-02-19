@@ -5,5 +5,5 @@ import { LayoutComponent } from './layout/layout.component';
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component:LoginComponent},
-  {path: 'layout', component: LayoutComponent, children: []},
+  {path: 'admin', component: LayoutComponent, children: []},
 ];

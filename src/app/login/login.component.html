@@ -1,15 +1,15 @@
 <div class="container">
   <div class="bg"></div>
-  <form action="">
+  <form action="" #form="ngForm">
       <h2 class="heading">Login Here</h2>
 
       <label for="email">Email: </label>
-      <input type="email">
+      <input type="email" name="email" [(ngModel)]="loginObj.email">
 
       <label for="password">Password: </label>
-      <input type="password" >
+      <input type="password" name="password" [(ngModel)]="loginObj.password" >
 
-      <button class="login-btn" type="submit">Login</button>
+      <button class="login-btn" type="submit" [hidden]="form.invalid" (click)="onLogin()">Login</button>
       <span class="register-btn">Don't have an account?</span>
   </form>
 </div>
