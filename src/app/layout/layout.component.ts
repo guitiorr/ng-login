@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -8,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
 
+  router = inject(Router);
+
+  onLogOff(){
+    localStorage.removeItem("angular19user");
+    this.router.navigateByUrl("login");
+  }
 }
